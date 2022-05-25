@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket{% endblock %}
+
+{% block body %}
+    <h1>Ticket</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ticket.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ ticket.Titre }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ ticket.Adresse }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ ticket.Type }}</td>
+            </tr>
+            <tr>
+                <th>Remplacement</th>
+                <td>{{ ticket.Remplacement }}</td>
+            </tr>
+            <tr>
+                <th>Priorité</th>
+                <td>{{ ticket.Priorite }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ ticket.Etat }}</td>
+            </tr>
+            <tr>
+                <th>Assigne</th>
+                <td>{{ ticket.Assigne }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ticket.Description }}</td>
+            </tr>
+            <tr>
+                <th>Temps</th>
+                <td>{{ ticket.Temps ? ticket.Temps.format('%y year(s), %m month(s), %d day(s)') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{{ ticket.Distance }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td> <img src="{{('/assets/image/' ~ ticket.photo) }}"> </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ticket_index') }}">back to list</a>
+
+    <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">edit</a>
+
+    {{ include('ticket/_delete_form.html.twig') }}
+{% endblock %}

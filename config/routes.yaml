@@ -1,3 +1,16 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+admin: 
+    path: /admin
+    controller: App\Controller\HomeController::index
+liste:
+    path: /user
+    controller: App\Controller\UserController::index
+panneau: 
+    path: /panneau
+    controller: App\Controller\PanneauController::index
+ticket: 
+    path: /ticket
+    controller: App\Controller\TicketController::index
