@@ -74,13 +74,12 @@ class TicketController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ticketRepository->add($ticket, true);
-
             return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('ticket/edit.html.twig', [
             'ticket' => $ticket,
-            'form' => $form,
+            'Ticketform' => $form,
         ]);
     }
 

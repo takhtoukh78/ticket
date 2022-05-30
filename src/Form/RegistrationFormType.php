@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use PhpParser\Node\Stmt\Label;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -18,18 +19,17 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('nom')
+            ->add('prenom')
+            ->add('adresse')
+            ->add('ville')
+            ->add('telephone')
+            ->add('plainPassword',
+             PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
+                'label' => 'Mot de passe',
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
