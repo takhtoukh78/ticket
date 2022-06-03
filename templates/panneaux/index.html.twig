@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Panneaux index{% endblock %}
 
 {% block body %}
-    
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -636,10 +635,10 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Employés</h3>
+								<h3 class="page-title">Employee</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="admin-dashboard.html">Tableau de bord</a></li>
-									<li class="breadcrumb-item active">mployés</li>
+									<li class="breadcrumb-item"><a href="admin-dashboard.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Employee</li>
 								</ul>
 							</div>
 							<div class="col-auto float-end ms-auto">
@@ -658,13 +657,13 @@
 						<div class="col-sm-6 col-md-3">  
 							<div class="form-group form-focus">
 								<input type="text" class="form-control floating">
-								<label class="focus-label">Identifiant employé</label>
+								<label class="focus-label">Employee ID</label>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-3">  
 							<div class="form-group form-focus">
 								<input type="text" class="form-control floating">
-								<label class="focus-label">Nom employé</label>
+								<label class="focus-label">Employee Name</label>
 							</div>
 						</div>
 						<div class="col-sm-6 col-md-3"> 
@@ -691,40 +690,63 @@
 								<table class="table table-striped custom-table datatable">
 									<thead>
 										<tr>
-											<th></th>
+											<th>N°</th>
 											<th>Nom</th>
-											<th>Employee ID</th>
-											<th>Email</th>
-											<th>Mobile</th>
-											<th class="text-nowrap">Adresse</th>
+											<th>Nom du groupe</th>
+											<th>Adresse</th>
+                                            <th>GPS</th>
+                                            <th>pitch</th>
+                                            <th>type</th>
 											<th class="text-end no-sort">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-									{% for user in users %}
+									{% for panneaux in panneauxes %}
 										<tr>
-											<td>
-												<h2 class="table-avatar">
-													<a href="profile.html" class="avatar"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-													<a href="profile.html"><td>{{ user.nom }} {{ user.prenom }}</td></a>
-												</h2>
-											</td>
-											<td>{{ user.id }}</td>
-											<td>{{ user.email }}</td>
-											<td>{{ user.telephone }}</td>
+						
+											<td>{{ panneaux.idPa }}</td>
+											 <td>{{ panneaux.nomPa }}</td>
+                                             <td>{{ panneaux.ip }}</td>
+                                            <td>{{ panneaux.adressePa }}</td>
+                                            <td><a href="http://www.google.com/maps/place/{{ panneaux.gps }}" target="_blank" >Voir sur maps</a></td>
+                                            <td>{{ panneaux.pitch }}</td>
+									
+                                                   {% if panneaux.paPtId == '1' %}
+                                                    <td> Privé </td>
+                                                    
+                                                   {% endif %}
+                                                   {% if panneaux.paPtId == '2' %}
+                                                    <td> Collectvité </td>
+                                                    
+                                                   {% endif %}
+                                                   {% if panneaux.paPtId == '3' %}
+                                                    <td> Totem </td>
+                                                    
+                                                   {% endif %}
+                                                   {% if panneaux.paPtId == '4' %}
+                                                    <td> Medialine </td>
+                                                    
+                                                   {% endif %}
+                                                   {% if panneaux.paPtId == '5' %}
+                                                    <td> Pixity </td>
+                                                    
+                                                   {% endif %}
+                                                   {% if panneaux.paPtId == '6' %}
+                                                    <td> Cocktail Vision </td>
+                                                    
+                                                   {% endif %}
 											
-											<td>{{ user.adresse }} {{ user.ville }}</td>
 											<td class="text-end">
 												<div class="dropdown dropdown-action">
 													<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
 													<div class="dropdown-menu dropdown-menu-right">
 														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+														{{ include('panneaux/_delete_form.html.twig') }}
 													</div>
 												</div>
 											</td>
 										</tr>
-										    {% endfor %}
+                                        {% endfor %}
 									</tbody>
 								</table>
 							</div>
@@ -743,15 +765,284 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							
 							<div class="modal-body">
-								
-									{{ render(controller(
-        'App\\Controller\\RegistrationController::register'
-    )) }}
-									
-										
-								
+								<form>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">First Name <span class="text-danger">*</span></label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Last Name</label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Username <span class="text-danger">*</span></label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Email <span class="text-danger">*</span></label>
+												<input class="form-control" type="email">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Password</label>
+												<input class="form-control" type="password">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Confirm Password</label>
+												<input class="form-control" type="password">
+											</div>
+										</div>
+										<div class="col-sm-6">  
+											<div class="form-group">
+												<label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-sm-6">  
+											<div class="form-group">
+												<label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
+												<div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Phone </label>
+												<input class="form-control" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Company</label>
+												<select class="select">
+													<option value="">Global Technologies</option>
+													<option value="1">Delta Infotech</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Department <span class="text-danger">*</span></label>
+												<select class="select">
+													<option>Select Department</option>
+													<option>Web Development</option>
+													<option>IT Management</option>
+													<option>Marketing</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Designation <span class="text-danger">*</span></label>
+												<select class="select">
+													<option>Select Designation</option>
+													<option>Web Designer</option>
+													<option>Web Developer</option>
+													<option>Android Developer</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="table-responsive m-t-15">
+										<table class="table table-striped custom-table">
+											<thead>
+												<tr>
+													<th>Module Permission</th>
+													<th class="text-center">Read</th>
+													<th class="text-center">Write</th>
+													<th class="text-center">Create</th>
+													<th class="text-center">Delete</th>
+													<th class="text-center">Import</th>
+													<th class="text-center">Export</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Holidays</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Leaves</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Clients</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Projects</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Tasks</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Chats</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Assets</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+												<tr>
+													<td>Timing Sheets</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Submit</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -1078,12 +1369,13 @@
 				</div>
 				<!-- /Delete Employee Modal -->
 				
-				
             </div>
 			<!-- /Page Wrapper -->
 			
         </div>
-	<!-- jQuery -->
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
         <script src="assets/js/jquery-3.6.0.min.js"></script>
 		
 		<!-- Bootstrap Core JS -->
@@ -1099,10 +1391,15 @@
 		<script src="assets/js/moment.min.js"></script>
 		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 		
+		<!-- Datatable JS -->
+		<script src="assets/js/jquery.dataTables.min.js"></script>
+		<script src="assets/js/dataTables.bootstrap4.min.js"></script>
+		
 		<!-- Custom JS -->
 		<script src="assets/js/app.js"></script>
 		
-    
     </body>
 </html>
+
 {% endblock %}
+

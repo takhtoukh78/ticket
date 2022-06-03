@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panneaux{% endblock %}
+
+{% block body %}
+    <h1>Panneaux</h1>
+
+    <table class="table">
+        <tbody>
+         
+            <tr>
+                <th>Id_pa</th>
+                <td>{{ panneaux.idPa }}</td>
+            </tr>
+            <tr>
+                <th>Nom_pa</th>
+                <td>{{ panneaux.nomPa }}</td>
+            </tr>
+            <tr>
+                <th>Groupe_id</th>
+                <td>{{ panneaux.groupeId }}</td>
+            </tr>
+            <tr>
+                <th>Ip</th>
+                <td>{{ panneaux.ip }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ panneaux.url }}</td>
+            </tr>
+            <tr>
+                <th>Adresse_pa</th>
+                <td>{{ panneaux.adressePa }}</td>
+            </tr>
+            <tr>
+                <th>Gps</th>
+                <td>{{ panneaux.gps }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ panneaux.photo }}</td>
+            </tr>
+            <tr>
+                <th>Resolution</th>
+                <td>{{ panneaux.resolution }}</td>
+            </tr>
+            <tr>
+                <th>Resolution_video</th>
+                <td>{{ panneaux.resolutionVideo }}</td>
+            </tr>
+            <tr>
+                <th>X_y</th>
+                <td>{{ panneaux.xY }}</td>
+            </tr>
+            <tr>
+                <th>Pitch</th>
+                <td>{{ panneaux.pitch }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ panneaux.type }}</td>
+            </tr>
+            <tr>
+                <th>Cropping</th>
+                <td>{{ panneaux.cropping }}</td>
+            </tr>
+            <tr>
+                <th>Pa_pt_id</th>
+                <td>{{ panneaux.paPtId }}</td>
+            </tr>
+            <tr>
+                <th>Nb_resa_max</th>
+                <td>{{ panneaux.nbResaMax }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_panneaux_index') }}">back to list</a>
+
+    <a href="{{ path('app_panneaux_edit', {'id': panneaux.idPa}) }}">edit</a>
+
+    {{ include('panneaux/_delete_form.html.twig') }}
+{% endblock %}

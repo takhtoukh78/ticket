@@ -10,7 +10,7 @@ liste:
     controller: App\Controller\UserController::index
 panneau: 
     path: /panneau
-    controller: App\Controller\PanneauController::index
+    controller: App\Controller\PanneauxController::index
 ticket: 
     path: /ticket
     controller: App\Controller\TicketController::index

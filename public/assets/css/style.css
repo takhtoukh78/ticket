@@ -1491,7 +1491,10 @@ a.bg-danger:focus, a.bg-danger:hover, button.bg-danger:focus, button.bg-danger:h
   }
 }
 .page-wrapper .content {
-  padding: 30px;
+  padding: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: -18px;
 }
 @media (max-width: 575px) {
   .page-wrapper .content {
@@ -2926,13 +2929,13 @@ input[type=file].form-control {
 .table th {
   white-space: nowrap;
   border-top: 1px solid #e2e5e8;
-  padding: 1rem 0.75rem;
+  padding: 10px 5px;
 }
 .table td {
   border-top: 1px solid #e2e5e8;
   white-space: nowrap;
   vertical-align: middle;
-  padding: 0.5rem;
+  padding: 10px;
 }
 .table td a {
   color: #333333;
@@ -3038,7 +3041,7 @@ input[type=file].form-control {
   color: #aaa;
 }
 .custom-table td {
-  padding: 10px 20px;
+  padding: 10px 10px;
 }
 
 .leave-table .l-name {

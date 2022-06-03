@@ -2,27 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Panneau;
+use App\Entity\PanneauxEtat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Panneau>
+ * @extends ServiceEntityRepository<PanneauxEtat>
  *
- * @method Panneau|null find($id, $lockMode = null, $lockVersion = null)
- * @method Panneau|null findOneBy(array $criteria, array $orderBy = null)
- * @method Panneau[]    findAll()
- * @method Panneau[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PanneauxEtat|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PanneauxEtat|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PanneauxEtat[]    findAll()
+ * @method PanneauxEtat[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PanneauRepository extends ServiceEntityRepository
+class PanneauxEtatRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Panneau::class);
+        parent::__construct($registry, PanneauxEtat::class);
     }
 
-
-    public function add(Panneau $entity, bool $flush = false): void
+    public function add(PanneauxEtat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -31,7 +30,7 @@ class PanneauRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Panneau $entity, bool $flush = false): void
+    public function remove(PanneauxEtat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,10 +38,9 @@ class PanneauRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    
 
 //    /**
-//     * @return Panneau[] Returns an array of Panneau objects
+//     * @return PanneauxEtat[] Returns an array of PanneauxEtat objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -56,7 +54,7 @@ class PanneauRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Panneau
+//    public function findOneBySomeField($value): ?PanneauxEtat
 //    {
 //        return $this->createQueryBuilder('p')
 //            ->andWhere('p.exampleField = :val')
