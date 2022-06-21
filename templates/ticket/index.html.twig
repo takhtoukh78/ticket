@@ -3,5 +3,53 @@
 {% block title %}Ticket index{% endblock %}
 
 {% block body %}
-   
+    <h1>Ticket index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Adresse</th>
+                <th>Type</th>
+                <th>Remplacement</th>
+                <th>Priorite</th>
+                <th>Etat</th>
+                <th>Assigne</th>
+                <th>Description</th>
+                <th>Temps</th>
+                <th>Distance</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.Titre }}</td>
+                <td>{{ ticket.Adresse }}</td>
+                <td>{{ ticket.Type }}</td>
+                <td>{{ ticket.Remplacement }}</td>
+                <td>{{ ticket.Priorite }}</td>
+                <td>{{ ticket.Etat }}</td>
+                <td>{{ ticket.Assigne }}</td>
+                <td>{{ ticket.Description }}</td>
+                <td>{{ ticket.Temps ? ticket.Temps.format('%y year(s), %m month(s), %d day(s)') : '' }}</td>
+                <td>{{ ticket.Distance }}</td>
+                <td>{{ ticket.photo }}</td>
+                <td>
+                    <a href="{{ path('app_ticket_show', {'id': ticket.id}) }}">show</a>
+                    <a href="{{ path('app_ticket_edit', {'id': ticket.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ticket_new') }}">Create new</a>
 {% endblock %}

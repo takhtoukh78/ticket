@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit TicketConversation{% endblock %}
+
+{% block body %}
+    <h1>Edit TicketConversation</h1>
+
+    {{ include('ticket_conversation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_ticket_conversation_index') }}">back to list</a>
+
+    {{ include('ticket_conversation/_delete_form.html.twig') }}
+{% endblock %}

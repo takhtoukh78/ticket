@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use phpDocumentor\Reflection\Types\Integer;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -24,60 +26,72 @@ class Ticket
     private $Titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Adresse;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Remplacement;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Priorite;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Etat;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Assigne;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Description;
 
     /**
-     * @ORM\Column(type="dateinterval")
+     * @ORM\Column(type="dateinterval", nullable=true)
      */
     private $Temps;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Distance;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+ 
+
+    /**
+      * @ORM\Column(type="integer", nullable=true)
+     */
+    private $id_contact;
 
     public function getId(): ?int
     {
         return $this->id;
     }
+    public function setId(string $Titre): self
+    {
+        $this->Titre = $Titre;
 
+        return $this;
+    }
     public function getTitre(): ?string
     {
         return $this->Titre;
@@ -209,4 +223,20 @@ class Ticket
 
         return $this;
     }
+
+
+    public function getIdContact(): ?Contact
+    {
+        return $this->id_contact;
+    }
+
+    public function setIdContact(Int $id_contact): self
+    {
+        $this->id_contact = $id_contact;
+
+        return $this;
+    }
+
+ 
+
 }

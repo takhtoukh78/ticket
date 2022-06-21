@@ -91,6 +91,7 @@ class Panneaux
      * @ORM\Column(type="integer", nullable=true)
      */
     private $nb_resa_max;
+    
 
     public function getIdPa(): ?int
     {

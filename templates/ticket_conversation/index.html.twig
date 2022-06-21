@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TicketConversation index{% endblock %}
+
+{% block body %}
+    <h1>TicketConversation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>State</th>
+                <th>Priority</th>
+                <th>Description</th>
+                <th>Date_creation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ticket_conversation in ticket_conversations %}
+            <tr>
+                <td>{{ ticket_conversation.id }}</td>
+                <td>{{ ticket_conversation.Title }}</td>
+                <td>{{ ticket_conversation.state }}</td>
+                <td>{{ ticket_conversation.priority }}</td>
+                <td>{{ ticket_conversation.description }}</td>
+                <td>{{ ticket_conversation.DateCreation ? ticket_conversation.DateCreation|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_ticket_conversation_show', {'id': ticket_conversation.id}) }}">show</a>
+                    <a href="{{ path('app_ticket_conversation_edit', {'id': ticket_conversation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ticket_conversation_new') }}">Create new</a>
+{% endblock %}

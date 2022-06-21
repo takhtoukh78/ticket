@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TicketConversation{% endblock %}
+
+{% block body %}
+    <h1>TicketConversation</h1>
+    <row>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ticket_conversation.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ ticket_conversation.Title }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ ticket_conversation.state }}</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ ticket_conversation.priority }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ticket_conversation.description }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{{ ticket_conversation.DateCreation ? ticket_conversation.DateCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</row>
+    
+    {% if ticket_conversation.IdContact.id is defined %}
+
+    {{ render(controller('App\\Controller\\ContactController::show',{'id': ticket_conversation.IdContact.id})) }}
+
+    {% endif %}
+    
+    {% if ticket_conversation.IdTicket.id is defined %}
+        {{ render(controller('App\\Controller\\TicketController::show',{'id': ticket_conversation.IdTicket.id})) }}
+{% endif %}
+    <a href="{{ path('app_ticket_conversation_index') }}">back to list</a>
+
+    <a href="{{ path('app_ticket_conversation_edit', {'id': ticket_conversation.id}) }}">edit</a>
+
+    {{ include('ticket_conversation/_delete_form.html.twig') }}
+{% endblock %}

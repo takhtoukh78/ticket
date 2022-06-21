@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Ticket;
+
 use App\Form\TicketType;
+
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TicketController extends AbstractController
 {
     /**
-     * @Route("/ticket", name="app_ticket_index", methods={"GET"})
+     * @Route("/", name="app_ticket_index", methods={"GET"})
      */
     public function index(TicketRepository $ticketRepository): Response
     {
@@ -24,12 +26,13 @@ class TicketController extends AbstractController
             'tickets' => $ticketRepository->findAll(),
         ]);
     }
+
     
 
     /**
      * @Route("/new", name="app_ticket_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, TicketRepository $ticketRepository): Response
+    public function new(Request $request,TicketRepository $ticketRepository): Response
     {
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
@@ -44,7 +47,7 @@ class TicketController extends AbstractController
             );
             $ticket->setPhoto($file);
             $ticketRepository->add($ticket, true);
-
+            
             return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
         }
 

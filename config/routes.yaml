@@ -14,3 +14,6 @@ panneau:
 ticket: 
     path: /ticket
     controller: App\Controller\TicketController::index
+panneaux: 
+    path: /pannea/add
+    controller: App\Controller\PanneauxController::add
