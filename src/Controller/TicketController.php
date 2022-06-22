@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TicketController extends AbstractController
 {
     /**
-     * @Route("/", name="app_ticket_index", methods={"GET"})
+     * @Route("/ticket", name="app_ticket_index", methods={"GET"})
      */
     public function index(TicketRepository $ticketRepository): Response
     {
