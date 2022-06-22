@@ -744,15 +744,11 @@
 								</button>
 							</div>
 							
-							<div class="modal-body">
-								
-									{{ render(controller(
-        'App\\Controller\\RegistrationController::register'
-    )) }}
-									
-										
-								
-							</div>
+					
+								<div class="modal-body">
+									{{ render(controller('App\\Controller\\UserController::new',{'request' : app.request })) }}
+								</div>
+							
 						</div>
 					</div>
 				</div>

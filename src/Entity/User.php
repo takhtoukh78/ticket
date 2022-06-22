@@ -62,6 +62,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Ville;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $role_utilisateur;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $date_embauche;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -207,6 +217,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(string $Ville): self
     {
         $this->Ville = $Ville;
+
+        return $this;
+    }
+
+    public function getRoleUtilisateur(): ?string
+    {
+        return $this->role_utilisateur;
+    }
+
+    public function setRoleUtilisateur(string $role_utilisateur): self
+    {
+        $this->role_utilisateur = $role_utilisateur;
+
+        return $this;
+    }
+
+    public function getDateEmbauche(): ?\DateTimeInterface
+    {
+        return $this->date_embauche;
+    }
+
+    public function setDateEmbauche(\DateTimeInterface $date_embauche): self
+    {
+        $this->date_embauche = $date_embauche;
 
         return $this;
     }
