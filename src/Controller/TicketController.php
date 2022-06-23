@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TicketController extends AbstractController
 {
     /**
-     * @Route("/ticket", name="app_ticket_index", methods={"GET"})
+     * @Route("", name="app_ticket_index", methods={"GET"})
      */
     public function index(TicketRepository $ticketRepository): Response
     {
@@ -48,13 +48,15 @@ class TicketController extends AbstractController
             $ticket->setPhoto($file);
             $ticketRepository->add($ticket, true);
             
-            return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('ticket/new.html.twig', [
             'ticket' => $ticket,
             'Ticketform' => $form,
         ]);
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
+    }
     }
 
     /**

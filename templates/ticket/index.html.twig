@@ -637,14 +637,14 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Employés</h3>
+								<h3 class="page-title">Ticket</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="admin-dashboard.html">Tableau de bord</a></li>
-									<li class="breadcrumb-item active">mployés</li>
+									<li class="breadcrumb-item active">Ticket</li>
 								</ul>
 							</div>
 							<div class="col-auto float-end ms-auto">
-								<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+								<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_employee"><i class="fa fa-plus"></i> Ajouter un ticket</a>
 								<div class="view-icons">
 									<a href="employees.html" class="grid-view btn btn-link"><i class="fa fa-th"></i></a>
 									<a href="employees-list.html" class="list-view btn btn-link active"><i class="fa fa-bars"></i></a>
@@ -756,7 +756,9 @@
 							
 					
 								<div class="modal-body">
-									{{ render(controller('App\\Controller\\TicketController::new',{'request' : app.request })) }}
+                                {% block Controller %}
+									{{ render(controller('App\\Controller\\TicketController::new', { 'request' : app.request })) }}
+                                {% endblock %}
 								</div>
 							
 						</div>
