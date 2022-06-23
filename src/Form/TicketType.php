@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TicketType extends AbstractType
@@ -15,10 +16,18 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Titre')
-            ->add('Adresse')
-            ->add('Type')
-            ->add('Remplacement')
+            ->add('Titre',TextType::class, [
+                'label' => false,
+                ])
+            ->add('Adresse',TextType::class, [
+                'label' => false,
+                ])
+            ->add('Type',TextType::class, [
+                'label' => false,
+                ])
+            ->add('Remplacement',TextType::class, [
+                'label' => false,
+                ])
             ->add('Priorite', ChoiceType::class, [
                 'choices'  => [
                     'Faible' => "faible",
@@ -33,8 +42,12 @@ class TicketType extends AbstractType
                     'Fermé' => "Fermé",
                 ],
             ])
-            ->add('Assigne')
-            ->add('Description')
+            ->add('Assigne',TextType::class, [
+                'label' => false,
+                ])
+            ->add('Description',TextType::class, [
+                'label' => false,
+                ])
             ->add('Temps', DateIntervalType::class, [
                 'with_years'  => false,
                 'with_months' => false,
@@ -42,8 +55,10 @@ class TicketType extends AbstractType
                 'with_hours'  => true,
             ])
             
-            ->add('Distance')
-            ->add('photo', FileType::class, [
+            ->add('Distance',TextType::class, [
+                'label' => false,
+                ])
+            ->add('photo', FileType::class,array('data_class' => null), [
                 'mapped' => 'false',
             ])
         ;

@@ -169,12 +169,13 @@ class TicketConversation
         return $this->Id_contact;
     }
 
-    public function setIdContact(?Contact $Id_contact): self
+    public function setIdContact(Int $id_contact): self
     {
-        $this->Id_contact = $Id_contact;
+        $this->id_contact = $id_contact;
 
         return $this;
     }
+
 
     public function getIdRessource(): ?Resources
     {

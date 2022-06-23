@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Ticket;
 use App\Entity\Contact;
+use App\Entity\TicketConversation;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use App\Repository\TicketConversationRepository;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,9 +52,10 @@ class ContactController extends AbstractController
  /**
      * @Route("/{id}/valid", name="app_contact_valid", methods={"GET", "POST"})
      */
-    public function valider(Request $request,TicketRepository $ticketRepository,Contact $contact, ContactRepository $contactRepository): Response
+    public function valider(Request $request,TicketRepository $ticketRepository,Contact $contact,TicketConversationRepository $ticketConvRepository): Response
     {
         $ticket = new ticket();
+        $TicketConversation = new TicketConversation();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
         $id = $contact->getId();
@@ -66,8 +69,12 @@ class ContactController extends AbstractController
         $ticket->setAdresse($adresse);
         $ticket->setPhoto($photo);
         $ticket->setDescription($description);
+        $TicketConversation->setIdContact($id);
+        $TicketConversation->setTitle($titre);
+        $TicketConversation->setDescription($description);
         if ($form->isSubmitted() && $form->isValid()) {
             $ticketRepository->add($ticket, true);
+            $ticketConvRepository->add($TicketConversation,true);
 
             return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
         }
