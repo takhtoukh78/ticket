@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\PanneauxRepository;
+use ApiPlatform\Core\Annotation\ApiResource ;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(attributes={"pagination_enabled"=false})
  * @ORM\Entity(repositoryClass=PanneauxRepository::class)
  */
 class Panneaux

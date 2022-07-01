@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Ticket;
-
+use App\Entity\TicketConversation;
 use App\Form\TicketType;
-
+use App\Repository\TicketConversationRepository;
 use App\Repository\TicketRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +32,7 @@ class TicketController extends AbstractController
     /**
      * @Route("/new", name="app_ticket_new", methods={"GET", "POST"})
      */
-    public function new(Request $request,TicketRepository $ticketRepository): Response
+    public function new(Request $request,TicketConversationRepository $ticketConversationRepository,TicketRepository $ticketRepository): Response
     {
         $ticket = new Ticket();
         $form = $this->createForm(TicketType::class, $ticket);
@@ -45,8 +45,13 @@ class TicketController extends AbstractController
                 $this->getParameter('photo_directrory'),
                 $file
             );
+            $id = $ticket->getId();
             $ticket->setPhoto($file);
+            $ticketConversation = new TicketConversation();
+            $ticketConversation->setIdTicket($id);
             $ticketRepository->add($ticket, true);
+            $ticketConversationRepository->add($ticketConversation,true);
+
             
         }
 
@@ -55,6 +60,7 @@ class TicketController extends AbstractController
             'Ticketform' => $form,
         ]);
         if ($form->isSubmitted() && $form->isValid()) {
+
             return $this->redirectToRoute('app_ticket_index', [], Response::HTTP_SEE_OTHER);
     }
     }

@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource ;
 use App\Repository\TicketConversationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(attributes={"pagination_enabled"=false})
  * @ORM\Entity(repositoryClass=TicketConversationRepository::class)
  */
 class TicketConversation
@@ -169,7 +171,7 @@ class TicketConversation
         return $this->Id_contact;
     }
 
-    public function setIdContact(Int $id_contact): self
+    public function setIdContact(?Contact $id_contact): self
     {
         $this->id_contact = $id_contact;
 

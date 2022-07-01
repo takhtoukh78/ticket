@@ -19,12 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/liste", name="app_user_index", methods={"GET"})
+     * @Route("", name="app_user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            
         ]);
     }
   
@@ -58,7 +59,10 @@ class UserController extends AbstractController
             
         ]);
         if ($form->isSubmitted()){
-            return $this->redirect($request->getUri());
+            return $this->render('user/index.html.twig', [
+                'users' => $userRepository->findAll(),
+            
+            ]);
     }
 }
     
@@ -76,16 +80,23 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="app_user_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
+    public function edit(Request $request, User $user,RequestStack $requestStack, UserPasswordHasherInterface $userPasswordHasher, UserRepository $userRepository): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
+            if ($form->isSubmitted() && $form->isValid()) {
+                // encode the plain password
+                $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+                
+                $userRepository->add($user, true);
+            }
+        
 
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,

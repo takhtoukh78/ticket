@@ -1,4 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block stylesheets %}
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+		
+		<!-- Datatable CSS -->
+		<link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="assets/css/select2.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+{% endblock %}
+{% block body %}
 {{ form_start(Ticketform) }}
-    {{ form_widget(Ticketform) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(Ticketform) }}
+   
+<div class="modal-body">
+								<form>
+                                
+									<div class="row">
+                                    <div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Panneaux </label>
+												{{ form_row(Ticketform.IdPanneaux, { 'class': 'form-control' }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Titre <span class="text-danger">*</span></label>
+												 {{ form_row(Ticketform.Titre, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Adresse</label>
+												 {{ form_row(Ticketform.Adresse, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Type <span class="text-danger">*</span></label>
+											 {{ form_row(Ticketform.Type, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Remplacement <span class="text-danger">*</span></label>
+												 {{ form_row(Ticketform.Remplacement, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Priorite</label>
+											 {{ form_row(Ticketform.Priorite, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Etat</label>
+												{{ form_row(Ticketform.Etat, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Assigne</label>
+												 {{ form_row(Ticketform.Assigne, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">  
+											<div class="form-group">
+												<label class="col-form-label">Temps <span class="text-danger">*</span></label>
+												<div class="cal-icon"> {{ form_row(Ticketform.Temps, { 'attr': {'class': 'form-control datetimepicker', 'type' : 'text'} }) }}</div>
+											</div>
+										</div>
+                                        	<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Déscription </label>
+												{{ form_row(Ticketform.Description, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label">Distance </label>
+												{{ form_row(Ticketform.Distance, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+                                        <div class="col-sm-6">
+											<div class="form-group">
+												<label class="col-form-label"> </label>
+												{{ form_row(Ticketform.photo, { 'attr': {'class': 'form-control'} }) }}
+											</div>
+										</div>
+                                        
+                                        
+										</div>
+                                        <div style="margin-left : 35%;">
+                                        <button type="submit" class="btn btn-primary submit-btn">{{ button_label|default('Enregistrer') }}</button> 
+									</div>
+                                    </div>
+        
+           
+            
+        
+     
+       {{ form_end(Ticketform) }}
+{% endblock %}
+
+{% block javascripts %}
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+{% endblock %}

@@ -17,3 +17,7 @@ ticket:
 panneaux: 
     path: /pannea/add
     controller: App\Controller\PanneauxController::add
+
+api_login_check:
+    path: /api/login
+    controller: App\Controller\SecurityController::login

@@ -22,13 +22,7 @@ class TicketConversationType extends AbstractType
             ->add('priority')
             ->add('description')
             ->add('Date_creation')
-            ->add('Id_Panel', EntityType::class, [
-                'class' => Panneaux::class,
-                'choice_label' => 'IdPa',
-                'placeholder' => 'Resources',
-                'label' => 'Resources',
-                'required' => false
-            ])
+            
             ->add('Id_ticket', EntityType::class, [
                 'class' => Ticket::class,
                 'choice_label' => 'Id',
@@ -49,6 +43,15 @@ class TicketConversationType extends AbstractType
                 'placeholder' => 'Resources',
                 'label' => 'Resources',
                 'required' => false
+            ])
+            ->add('IdPanel', EntityType::class, [
+                'class' => Panneaux::class,
+                'choice_label' => 'NomPa',
+                'placeholder' => 'Panneaux',
+                'label' => 'Panneaux',
+                'attr' => [
+                    'class' => 'select-tags'
+                ],
             ])
         ;
     }

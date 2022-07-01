@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Repository\TicketRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource ;
 use Doctrine\ORM\Mapping\JoinColumn;
 use phpDocumentor\Reflection\Types\Integer;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
+ * @ApiResource(attributes={"pagination_enabled"=false})
  * @ORM\Entity(repositoryClass=TicketRepository::class)
  */
 class Ticket
@@ -75,7 +77,11 @@ class Ticket
      */
     private $photo;
 
- 
+  /**
+     * @ORM\OneToOne(targetEntity=Panneaux::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="Id_panneaux", referencedColumnName="id_pa")
+     */
+    private $Id_Panneaux;
 
     /**
       * @ORM\Column(type="integer", nullable=true)
@@ -112,6 +118,17 @@ class Ticket
     public function setAdresse(string $Adresse): self
     {
         $this->Adresse = $Adresse;
+
+        return $this;
+    }
+    public function getIdPanneaux(): ?Panneaux
+    {
+        return $this->Id_Panneaux;
+    }
+
+    public function setIdPanneaux(?Panneaux $Id_Panneaux): self
+    {
+        $this->Id_Panneaux = $Id_Panneaux;
 
         return $this;
     }

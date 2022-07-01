@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <style>
+        .modal .select-tag {
+            
+            width : 509px;
+        }
+        </style>
+
+<div class="example-wrapper">
+  
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/ticket/ticket/src/Controller/SearchController.php'|file_link(0) }}">src/Controller/SearchController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/wamp64/www/ticket/ticket/templates/search/index.html.twig'|file_link(0) }}">templates/search/index.html.twig</a></code></li>
+    </ul>
+    {{ form(form) }}
+    {% if app.request.method == 'POST' %}
+    <div>
+        {% if panneaux | length == 0 %}
+            <h4>Aucun résulat pour votre recherche.</h4>
+           {% else %}
+               <h3 class="mt-3">Vos résulats de recherche :</h3>
+               {% for panneaux in panneauxes %}
+                   <div class="mt-3 p-3 bg-light border rounded">
+                       <a href="{{ path('app_panneaux_index') }}">
+                              <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ Panneaux.adressePa }}</h6>
+                              
+                       </a>
+                   </div>
+              {% endfor %}
+          {% endif %}
+     </div>
+{% endif %}
+</div>
+{% endblock %}
+ {% block javascripts %}
+                    {{ encore_entry_script_tags('app') }}
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                    <script>
+                    
+                    $(function(){
+                       
+                    $('.select-tag').select2();
+    });
+     
+                    
+                    </script>
+                    
+                {% endblock %}

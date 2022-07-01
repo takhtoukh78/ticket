@@ -63,4 +63,23 @@ class PanneauxRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+  // Find/search articles by title/content
+  public function findPanneauxByName(string $query)
+  {
+      $qb = $this->createQueryBuilder('p');
+      $qb
+          ->where(
+              $qb->expr()->andX(
+                  $qb->expr()->orX(
+                      $qb->expr()->like('p.adresse_pa', ':query'),
+                  ),
+             
+              )
+          )
+          ->setParameter('query', '%' . $query . '%')
+      ;
+      return $qb
+          ->getQuery()
+          ->getResult();
+  }
 }

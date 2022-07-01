@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource ;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ApiResource(attributes={"pagination_enabled"=false})
  * @ORM\Entity(repositoryClass=ContactRepository::class)
  */
 class Contact

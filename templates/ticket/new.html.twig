@@ -1,10 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}New Ticket{% endblock %}
+{% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <style>
+        .modal .select-tag {
+            
+            width : 300px ;
+        }
+        </style>
 
+{% endblock %}
 {% block body %}
-
 
     {{ include('ticket/_form.html.twig') }}
 
 {% endblock %}
+              {% block javascripts %}
+                    {{ encore_entry_script_tags('app') }}
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                    <script>
+                    $(function(){
+                       
+                    $('.select-tag').select2({
+                    dropdownParent: $('#add_employee')
+                    });
+     
+                    })
+                    </script>
+                    
+                {% endblock %}

@@ -1,7 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
+{% block stylesheets %}
+   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+		
+		<!-- Datatable CSS -->
+		<link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="assets/css/select2.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+{% endblock %}
 {% block body %}
     {{ form_start(form) }}
 <div class="modal-body">
@@ -53,18 +76,13 @@
 										<div class="col-sm-6">  
 											<div class="form-group">
 												<label class="col-form-label"> Date d'embauche <span class="text-danger">*</span></label>
-												 {{ form_row(form.date_embauche, { 'attr': {'class': 'form-control datetimepicker'} }) }}
+												<div class="cal-icon"> {{ form_row(form.date_embauche, { 'attr': {'class': 'form-control datetimepicker', 'type' : 'text'} }) }}</div>
 											</div>
 										</div>
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label class="col-form-label">Téléphone </label>
 												{{ form_row(form.telephone, { 'attr': {'class': 'form-control'} }) }}
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label class="col-form-label">Entreprise</label>
 											</div>
 										</div>
 										</div>
@@ -78,4 +96,9 @@
         
      
        {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 {% endblock %}

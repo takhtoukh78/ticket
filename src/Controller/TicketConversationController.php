@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TicketConversationController extends AbstractController
 {
     /**
-     * @Route("/", name="app_ticket_conversation_index", methods={"GET"})
+     * @Route("", name="app_ticket_conversation_index", methods={"GET", "POST"})
      */
     public function index(TicketConversationRepository $ticketConversationRepository): Response
     {
@@ -69,6 +69,7 @@ class TicketConversationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ticketConversationRepository->add($ticketConversation, true);
+            
 
             return $this->redirectToRoute('app_ticket_conversation_index', [], Response::HTTP_SEE_OTHER);
         }
